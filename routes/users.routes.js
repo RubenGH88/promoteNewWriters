@@ -15,6 +15,7 @@ router.get("/", (req, res, next) => {
 
   router.get("/:user", (req, res, next) => {
     User.findOne({ username: req.params.user })
+    .populate("works")  
     
     .then((user) => {
         if(user===null){res.redirect("/users")}
@@ -28,7 +29,8 @@ router.get("/", (req, res, next) => {
         if(req.params.user!==req.session.user.username){
             res.redirect("/users")}
 
-        User.findOne({ username: req.params.user })   
+        User.findOne({ username: req.params.user })
+        .populate("works")   
 
         .then((user) => 
         res.render("users/profile.hbs", { user }))

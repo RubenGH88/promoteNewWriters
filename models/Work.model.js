@@ -8,6 +8,7 @@ const workSchema = new Schema(
       required: true, 
     },
 
+
     type: {
       type: String,
       enum: ["Short Story", "Poetry", "Song", "Theater", "Narrative"],
@@ -26,7 +27,18 @@ const workSchema = new Schema(
       
     }, 
 
+    description: {
+      type: String,
+      
+      required: true, 
+    }, 
+
     ratings:[Number],
+
+    avRating: {
+      type: Number,
+      
+    }, 
   
 
   },

@@ -1,10 +1,10 @@
 <div class="divform">
    <form action="/auth/signup" method="POST">
       <h2 class="formtext1">Register</h2>
-      <p type="Username"><input placeholder="Your username"></input></p>
-      <p type="Email"><input placeholder="Your email"></input></p>
-      <p type="Password"><input placeholder="Your password"></input></p>
-      <button class="formbutton">Register</button>
+      <p ><input name="username" placeholder="Your username"></p>
+     
+      <p ><input name="password" placeholder="Your password"></p>
+      <button type="submit" class="formbutton">Register</button>
       </form>
    {{#if errorMessage}}
       {{errorMessage}}

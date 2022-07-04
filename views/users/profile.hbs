@@ -1,1 +1,28 @@
 <h1>este es el perfil de {{user.username}}</h1>
+
+<h2>List of favorites</h2>
+
+{{#each user.favorites}}
+
+<h3>favorites</h3>
+
+
+{{/each}}
+
+<h2>Works</h2>
+
+{{#each user.works}}
+<br>
+<h3>Name: {{name}}</h3>
+<h3>Average Rating: {{this.avRating}}</h3>
+<a href="/works/edit/{{this.id}}" class="btn">Edit</a>
+
+<form action="/works/delete/{{_id}}" method="POST" hidden>
+        <button type="submit" class="btn">Delete</button>
+      </form>
+<br>
+
+{{/each}}
+
+
+<a href="/works/create" class="btn">Add Work</a>
