@@ -5,12 +5,35 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      unique: true, 
+      required: true, 
     },
-    password: String,
+    password: {
+      type: String,
+      required: true, 
+    }, 
+    email: {
+      type: String,
+      unique: true, 
+      
+    }, 
+    works: [{ type: Schema.Types.ObjectId, ref: "Work" }],
+
+    favorites: [{ type: Schema.Types.ObjectId, ref: "User" }],
+
+    rating: {
+      type: Number,
+       
+    }, 
+    
+    
+
+  
   },
+
+
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
+    
     timestamps: true,
   }
 );
@@ -18,3 +41,5 @@ const userSchema = new Schema(
 const User = model("User", userSchema);
 
 module.exports = User;
+
+
