@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 // ℹ️ Handles password encryption
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
 // How many rounds should bcrypt run the salt (default [10 - 12 rounds])
@@ -20,6 +20,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 router.post("/signup", isLoggedOut, (req, res) => {
   const { username, password } = req.body;
+  
 
   if (!username) {
     return res.status(400).render("auth/signup", {
@@ -51,7 +52,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     if (found) {
       return res
         .status(400)
-        .render("auth.signup", { errorMessage: "Username already taken." });
+        .render("auth/signup", { errorMessage: "Username already taken." });
     }
 
     // if user is not found, create a new user - start with hashing the password
@@ -68,7 +69,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
+        console.log(user)
         res.redirect("/");
+        
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -86,6 +89,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
           .status(500)
           .render("auth/signup", { errorMessage: error.message });
       });
+
   });
 });
 

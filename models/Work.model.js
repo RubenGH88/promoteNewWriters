@@ -27,6 +27,7 @@ const workSchema = new Schema(
     }, 
 
     ratings:[Number],
+  
 
   },
 

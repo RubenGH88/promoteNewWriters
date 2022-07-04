@@ -5,18 +5,19 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      unique: true, 
+      
       required: true, 
     },
     password: {
       type: String,
       required: true, 
     }, 
-    email: {
+    /*email: {
       type: String,
-      unique: true, 
+      unique: true,
+      required: true
       
-    }, 
+    }, */
     works: [{ type: Schema.Types.ObjectId, ref: "Work" }],
 
     favorites: [{ type: Schema.Types.ObjectId, ref: "User" }],
@@ -25,9 +26,6 @@ const userSchema = new Schema(
       type: Number,
        
     }, 
-    
-    
-
   
   },
 

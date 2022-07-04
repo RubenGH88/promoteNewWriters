@@ -1,2 +1,8 @@
-<h1>{{users.username}}</h1>
-<h1>{{users.works.length}}</h1>
+{{#each user}}
+
+<h1>{{username}}</h1>
+<h1>Number of works: {{works.length}}</h1>
+<h1>Rating: {{rating}}</h1>
+
+
+{{/each}}
