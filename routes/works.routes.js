@@ -31,17 +31,16 @@ router.post("/create",isLoggedIn, async (req, res, next) => {
     res.send("File was not found");
     return;
   }
-  
+  else{
+const file=req.files.file
+file.mv("./../public/files")
+res.send("file upload")
+  }
   Work.create(req.body)
   
   .then((work) => {
     
-      /*if(!req.files) {
-        res.send({
-            status: false,
-            message: 'No file uploaded '
-        });}
-        else{}*/
+      
         
         User.findByIdAndUpdate(req.user._id,{$push : {works : work._id}})
         .then((user)=>{
