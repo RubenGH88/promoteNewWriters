@@ -214,6 +214,38 @@ header .navbar a:hover{
 .about .column .content .buttons a:last-child{
   margin-left: 2rem;
 }
+
+.footer{
+ padding-top: 3rem;
+ background-color: red;
+ background-size: cover;
+ background-position: center;
+}
+
+.footer .box-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer .box-container .box{
+  flex: 1 1 25rem;
+  margin: 2rem;
+}
+
+.footer .box-container .box h3{
+  font-size: 2.5rem;
+  padding: 1rem 0;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+}
+
+.footer .box-container .box a{
+  display: block;
+  font-size: 1.5rem;
+  padding: .5rem 0;
+  color: #eee;
+}
 /* Index End */
 /* ----------------------------------------- */
 /* Signup form start */
