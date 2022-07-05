@@ -16,14 +16,36 @@ router.get("/create",isLoggedIn, (req, res, next) => {
     res.render("works/create.hbs")
 })
 
+router.post("/test", (req, res) => {
+  if (!req.files) {
+    res.send("File was not found");
+    return;
+  }
 
-router.post("/create",isLoggedIn, (req, res, next) => {
-    Work.create(req.body)
+  const file = req.files.file;
+  res.send(`${file.name} File Uploaded`);
+});
+
+router.post("/create",isLoggedIn, async (req, res, next) => {
+  if (!req.files) {
+    res.send("File was not found");
+    return;
+  }
+  
+  Work.create(req.body)
+  
+  .then((work) => {
     
-    .then((work) => {
+      /*if(!req.files) {
+        res.send({
+            status: false,
+            message: 'No file uploaded '
+        });}
+        else{}*/
         
         User.findByIdAndUpdate(req.user._id,{$push : {works : work._id}})
         .then((user)=>{
+
             res.redirect("/users/"+user.username+"/profile")
         })
         
