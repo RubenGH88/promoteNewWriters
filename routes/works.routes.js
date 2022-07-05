@@ -16,30 +16,28 @@ router.get("/create",isLoggedIn, (req, res, next) => {
     res.render("works/create.hbs")
 })
 
-router.post("/test", (req, res) => {
+
+router.post("/create",isLoggedIn, (req, res, next) => {
   if (!req.files) {
     res.send("File was not found");
     return;
   }
-
-  const file = req.files.file;
-  res.send(`${file.name} File Uploaded`);
-});
-
-router.post("/create",isLoggedIn, async (req, res, next) => {
-  if (!req.files) {
-    res.send("File was not found");
-    return;
-  }
-  else{
-const file=req.files.file
-file.mv("./../public/files")
-res.send("file upload")
-  }
+  const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  req.body.file="/public/files/"+randomName+".pdf"
   Work.create(req.body)
   
   .then((work) => {
+    console.log(work)
+    let file = req.files.file;
     
+    console.log(
+      '🚀 ~ file: works.routes.js ~ line 30 ~ router.post ~ file',
+      file
+    );
+    file.mv(`${__dirname}/../public/files/${randomName}.pdf`, (err) => {
+      console.log(err)
+    });
+    res.send({status:"uploaded",src:"http://localhost:3000/files/"+randomName+".pdf"});
       
         
         User.findByIdAndUpdate(req.user._id,{$push : {works : work._id}})
