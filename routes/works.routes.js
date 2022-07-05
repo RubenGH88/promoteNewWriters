@@ -114,6 +114,17 @@ router.get("/work/:id", (req, res, next) => {
           });
     });
 
-
+    router.post("/rating", (req, res, next) => {
+      
+    
+      Work.findByIdAndUpdate(req.body.id,{$push : {ratings : req.body.stars}})
+      .then(() => {
+          res.redirect("/works/work/"+req.body.id)
+        })
+          
+          .catch((err) => {
+              next(err);
+            });
+      });
 
 module.exports = router;

@@ -9,7 +9,8 @@
 <a href="{{work.file}}" class="btn">Read</a>
 <!-- Insertar form de estrellas aquí -->
 <h1>Rate this work!</h1>
-<form class="rating" action="/form-rating" method="POST">
+<form class="rating" action="/works/rating" method="POST">
+<input name="id" value="{{work.id}}" type="hidden"></input> 
     <label>
       <input type="radio" name="stars" value="1" >
       <span class="icon">★</span>
@@ -29,6 +30,7 @@
       </input> 
     </label>
     <label>
+    
       <input type="radio" name="stars" value="4" >
       <span class="icon">★</span>
       <span class="icon">★</span>
@@ -44,9 +46,9 @@
       <span class="icon">★</span>
       <span class="icon">★</span>
       </input>
+      <button type="submit" class="btn2">Vote</button>
     </label>
 </form>
-<a href="#" class="btn2">Vote</a>
 <!-- .push (value) ratings -->
 
 
