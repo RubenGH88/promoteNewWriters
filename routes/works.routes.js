@@ -136,7 +136,8 @@ router.get("/work/:id", (req, res, next) => {
     
       .then((user) => {
         let ratingsA=[]
-        user.works.forEach((work)=>{ratingsA.push(work.avRating)})
+        user.works.forEach((work)=>{if(work.ratings.length){
+          ratingsA.push(work.avRating)}})
         
         User.findByIdAndUpdate(user._id,{rating : average(ratingsA)})
         .then((user) => {
