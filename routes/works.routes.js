@@ -23,7 +23,8 @@ router.post("/create",isLoggedIn, (req, res, next) => {
     return;
   }
   const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  req.body.file="/public/files/"+randomName+".pdf"
+  const hostname = req.headers.host;
+  req.body.file="http://"+hostname+"/files/"+randomName+".pdf"
   Work.create(req.body)
   
   .then((work) => {
@@ -34,10 +35,7 @@ router.post("/create",isLoggedIn, (req, res, next) => {
     file.mv(`${__dirname}/../public/files/${randomName}.pdf`, (err) => {
       console.log(err)
     });
-    const hostname = req.headers.host;
-    console.log(hostname)
-    res.send({status:"uploaded",src:"http://"+hostname+"/files/"+randomName+".pdf"});
-      
+     
         
         User.findByIdAndUpdate(req.user._id,{$push : {works : work._id}})
         .then((user)=>{
