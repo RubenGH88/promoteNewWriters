@@ -27,17 +27,16 @@ router.post("/create",isLoggedIn, (req, res, next) => {
   Work.create(req.body)
   
   .then((work) => {
-    console.log(work)
+    
     let file = req.files.file;
     
-    console.log(
-      '🚀 ~ file: works.routes.js ~ line 30 ~ router.post ~ file',
-      file
-    );
+    
     file.mv(`${__dirname}/../public/files/${randomName}.pdf`, (err) => {
       console.log(err)
     });
-    res.send({status:"uploaded",src:"http://localhost:3000/files/"+randomName+".pdf"});
+    const hostname = req.headers.host;
+    console.log(hostname)
+    res.send({status:"uploaded",src:"http://"+hostname+"/files/"+randomName+".pdf"});
       
         
         User.findByIdAndUpdate(req.user._id,{$push : {works : work._id}})
