@@ -1,12 +1,12 @@
 <div class="divform">
-   <form action="/works/create" method="POST">
+   <form action="/works/create" enctype="multipart/form-data" method="POST">
       <h2 class="formtext1">New Work</h2>
       <p ><input name="name" placeholder="The name of the work"></p>
       <p ><input name="type" placeholder="The type of the work"></p>
       <p ><input name="genre" placeholder="The genre of the work"></p>
       <p ><input name="language" placeholder="The language of the work"></p>
       <p ><input name="description" placeholder="The description of the work"></p>
-    
+      <p ><input type="file" id="file" name="file" multiple /></p>
       <button type="submit" class="formbutton">Add new work</button>
       </form>
    {{#if errorMessage}}

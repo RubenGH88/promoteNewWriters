@@ -18,12 +18,28 @@ router.get("/create",isLoggedIn, (req, res, next) => {
 
 
 router.post("/create",isLoggedIn, (req, res, next) => {
-    Work.create(req.body)
+  if (!req.files) {
+    res.send("File was not found");
+    return;
+  }
+  const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  const hostname = req.headers.host;
+  req.body.file="http://"+hostname+"/files/"+randomName+".pdf"
+  Work.create(req.body)
+  
+  .then((work) => {
     
-    .then((work) => {
+    let file = req.files.file;
+    
+    
+    file.mv(`${__dirname}/../public/files/${randomName}.pdf`, (err) => {
+      console.log(err)
+    });
+     
         
         User.findByIdAndUpdate(req.user._id,{$push : {works : work._id}})
         .then((user)=>{
+
             res.redirect("/users/"+user.username+"/profile")
         })
         

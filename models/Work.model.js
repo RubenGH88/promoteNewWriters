@@ -39,7 +39,8 @@ const workSchema = new Schema(
       type: Number,
       
     }, 
-  
+
+    file:{type:String}
 
   },
 
