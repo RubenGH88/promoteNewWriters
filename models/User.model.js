@@ -24,7 +24,7 @@ const userSchema = new Schema(
 
     rating: {
       type: Number,
-       
+      default:0
     }, 
 
     favorites:[]

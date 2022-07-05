@@ -2,7 +2,7 @@ const router = require("express").Router();
 const isLoggedIn = require("../middleware/isLoggedIn");
 const User = require("../models/User.model");
 const Work = require("../models/Work.model");
-
+const average= require("../utils/average")
 
 router.get("/", (req, res, next) => {
    
@@ -23,8 +23,8 @@ router.post("/create",isLoggedIn, (req, res, next) => {
     return;
   }
   const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  const hostname = req.headers.host;
-  req.body.file="http://"+hostname+"/files/"+randomName+".pdf"
+  
+  req.body.file="/files/"+randomName+".pdf"
   Work.create(req.body)
   
   .then((work) => {
@@ -63,7 +63,7 @@ router.get('/edit/:id',isLoggedIn, (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-  });
+});
 
 
 
@@ -88,43 +88,85 @@ router.post('/delete/:id', (req, res, next) => {
     
     Work.findByIdAndDelete(req.params.id) 
     .then(() => 
-    User.findOneAndUpdate({ username: req.session.user.username },{$pull : {works : req.params.id}}))
+      User.findOneAndUpdate({ username: req.session.user.username },
+        {$pull : {works : req.params.id}}))
+        
+            .then(() => {
+              User.findById(req.session.user._id)
+              .populate("works")
     
-    
-        .then(() => 
-        res.redirect("/users/"+req.session.user.username+"/profile"))
+              .then((user) => {
+                  let ratingsA=[]
+                  user.works.forEach((work)=>{ratingsA.push(work.avRating)})
+        
+                User.findByIdAndUpdate(user._id,{rating : average(ratingsA)})
+                    .then((user) => {
+                      Work.findById(req.params.id)  
+                      .then((work) => {
+        
+                    res.redirect("/users/"+req.session.user.username+"/profile")
+                  })
+          })
+      })
+            
+          
+          
+    })
         
         .catch((err) => console.log(err));
 
 
-  });
+});
 
 
 
 
 router.get("/work/:id", (req, res, next) => {
-    Work.findById(req.params.id)
+
+
+  Work.findById(req.params.id)  
+  .then((work)=>{ console.log(work.id)
+    let ratings=work.ratings
+    console.log(ratings)
+  Work.findByIdAndUpdate(work.id,{avRating : average(ratings)})
+
+  .then(()=>{
+    User.findOne({ works: req.params.id })
+    .populate("works")
     
-    .then((work) => {
+      .then((user) => {
+        let ratingsA=[]
+        user.works.forEach((work)=>{ratingsA.push(work.avRating)})
         
-        res.render( "works/work",{ work })})
+        User.findByIdAndUpdate(user._id,{rating : average(ratingsA)})
+        .then((user) => {
+            Work.findById(req.params.id)  
+            .then((work) => {
         
+              res.render( "works/work",{ work })
+            })
+          })
+      })
+  })
+})
+
         .catch((err) => {
             next(err);
           });
-    });
+});
 
-    router.post("/rating", (req, res, next) => {
+router.post("/rating", (req, res, next) => {
       
     
-      Work.findByIdAndUpdate(req.body.id,{$push : {ratings : req.body.stars}})
-      .then(() => {
+  Work.findByIdAndUpdate(req.body.id,{$push : {ratings : req.body.stars}})
+  .then(() => {
+        
           res.redirect("/works/work/"+req.body.id)
-        })
+  })
           
-          .catch((err) => {
+    .catch((err) => {
               next(err);
             });
-      });
+});
 
 module.exports = router;

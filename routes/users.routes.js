@@ -2,12 +2,15 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Work = require("../models/Work.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const average= require("../utils/average")
 
 
 router.get("/", (req, res, next) => {
   User.find()
   .then((user) => 
-      res.render("users/users.hbs", { user }))
+  
+  res.render("users/users.hbs", { user }))
+  
       
       .catch((err) => console.log(err));
   });
@@ -28,14 +31,7 @@ router.get("/", (req, res, next) => {
 
     router.get("/:user/favorite",isLoggedIn, (req, res, next) => {
 
-        User.findById(req.session.user._id)
-        .then((user) => {
-            if(user.favorites.includes(req.params.user))
-            {res.redirect("/users")}
-        
-            res.render( "users/user",{ user })})
-            
-            .catch((err) => res.render("users/users"));
+       res.send("pendiente añadir a favoritos")
         });
 
 
