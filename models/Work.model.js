@@ -37,6 +37,8 @@ const workSchema = new Schema(
 
     avRating: {
       type: Number,
+      default:0
+      
       
     }, 
 
