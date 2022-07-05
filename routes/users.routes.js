@@ -25,6 +25,23 @@ router.get("/", (req, res, next) => {
         .catch((err) => res.render("users/users"));
     });
 
+
+    router.get("/:user/favorite",isLoggedIn, (req, res, next) => {
+
+        User.findById(req.session.user._id)
+        .then((user) => {
+            if(user.favorites.includes(req.params.user))
+            {res.redirect("/users")}
+        
+            res.render( "users/user",{ user })})
+            
+            .catch((err) => res.render("users/users"));
+        });
+
+
+
+
+
     router.get("/:user/profile",isLoggedIn, (req, res, next) => {
         if(req.params.user!==req.session.user.username){
             res.redirect("/users")}
