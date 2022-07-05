@@ -1,9 +1,9 @@
 <div class="divform">
 <form action="/auth/login" method="POST">
    <h2>Login</h2>
-   <p type="Username"><input placeholder="Your username"></input></p>
-   <p type="Password"><input placeholder="Your password"></input></p>
-   <button>Login!</button>
+   <p><input name="username" placeholder="Your username"></p>
+   <p><input name="password" placeholder="Your password"></p>
+   <button type="submit">Login!</button>
 </form>
 {{#if errorMessage}}
    {{errorMessage}}
