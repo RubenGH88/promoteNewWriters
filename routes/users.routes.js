@@ -31,7 +31,7 @@ router.get("/", (req, res, next) => {
 
 
     router.post("/:user/favorite",isLoggedIn, (req, res, next) => {
-        if(!req.session.user.favorites.includes(req.params.user)){
+        if(!req.session.user.favorites.includes(req.params.user)) {
             User.findByIdAndUpdate(req.session.user._id,{
                 $push: { favorites: req.params.user},
             }).then(() => {
