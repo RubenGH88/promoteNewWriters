@@ -8,9 +8,9 @@ const { findByIdAndUpdate } = require("../models/User.model");
 
 router.get("/", (req, res, next) => {
   User.find()
-  .then((user) => 
+  .then((user) => {
   
-  res.render("users/users.hbs", { user }))
+  res.render("users/users.hbs", { user })})
   
       
       .catch((err) => console.log(err));
@@ -18,20 +18,19 @@ router.get("/", (req, res, next) => {
 
 
   router.get("/:user", (req, res, next) => {
+
     User.findOne({ username: req.params.user })
     .populate("works")  
     
     .then((user) => {
         if(user===null){res.redirect("/users")}
 
-     
        
-           
-        
-        res.render( "users/user",{ user})})
-       })
-        .catch((err) => res.render("users/users"));
+        res.render( "users/user",{ user})
     })
+       
+        .catch((err) => res.render("users/users"));
+   
     });
 
 
@@ -45,8 +44,8 @@ router.get("/", (req, res, next) => {
                 $push: { favorites: req.params.user},
             }).then(() => {
                 res.redirect("/");
-            }).catch((err) => console.log(err))
-        }
+                 })
+        }.catch((err) => console.log(err))
     });
 
     router.get("/:user/profile",isLoggedIn, (req, res, next) => {
