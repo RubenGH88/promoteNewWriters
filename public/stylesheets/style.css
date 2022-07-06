@@ -431,3 +431,8 @@ form button:hover{
   -webkit-transform:rotate(360deg);
   -webkit-font-smoothing:antialiased;
   }
+  /* User list ends */
+  /* Own profile starts */
+  .myprofile{
+    margin-top: 80px;
+  }
