@@ -31,6 +31,7 @@
   <a href="/works/edit/{{this.id}}" class="btn">Edit</a>
 
   <form action="/works/delete/{{_id}}" method="POST" >
+  <p ><input name="file" value="{{this.file}}" hidden></p>
           <button type="submit" class="btn">Delete</button>
         </form>
   <br>

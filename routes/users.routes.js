@@ -1,9 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
-const Work = require("../models/Work.model");
+
 const isLoggedIn = require("../middleware/isLoggedIn");
-const average= require("../utils/average");
-const { findByIdAndUpdate } = require("../models/User.model");
+
 
 
 router.get("/", (req, res, next) => {
@@ -47,12 +46,11 @@ router.get("/", (req, res, next) => {
         .then((userLoged) => {
             
             if(!userLoged.favorites.includes(req.params.user)){
-                console.log(req.session.user._id)
-                console.log(req.params.user)
+              
                 
                 User.findByIdAndUpdate(req.session.user._id,{
                     $push: { favorites: req.params.user},
-                }).then((user)=>{console.log(user.username)})
+                }).then(()=>{})
                 
             }
             res.redirect("/users/"+req.params.user)

@@ -3,6 +3,8 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const User = require("../models/User.model");
 const Work = require("../models/Work.model");
 const average= require("../utils/average")
+const fs= require("fs")
+
 
 
 router.get("/", async (req, res, next) => {
@@ -15,7 +17,6 @@ router.get("/", async (req, res, next) => {
       genre: req.query.genre,
       language: req.query.language })
 
-    
   
       if(filteredWorks.length===0){works=allWorks}
       if(filteredWorks.length!==0){works=filteredWorks}
@@ -27,12 +28,12 @@ router.get("/", async (req, res, next) => {
   }
 
       
-    
-    
-   
 })
 
 router.get("/create",isLoggedIn, (req, res, next) => {
+    
+   
+    
     
     res.render("works/create.hbs")
 })
@@ -91,10 +92,19 @@ router.get('/edit/:id',isLoggedIn, (req, res, next) => {
 
 router.post("/edit/:id",isLoggedIn, (req, res, next) => {
   
-  if (!req.files) {
-    res.send("File was not found");
-    return;
+  if (!req.files) {console.log("no hay archivo")
+    Work.findByIdAndUpdate(req.params.id,req.body)
+    .then((work) => {
+    res.redirect("/users/"+req.session.user.username+"/profile")
+  });
   }
+else{console.log("si hay archivo")
+  let path="public"+req.body.file
+    fs.unlink(path,function(err){
+         if(err) return console.log(err);
+    });  
+  
+
   const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   
   req.body.file="/files/"+randomName+".pdf"
@@ -112,6 +122,7 @@ router.post("/edit/:id",isLoggedIn, (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+  }
 
      
     
@@ -120,7 +131,12 @@ router.post("/edit/:id",isLoggedIn, (req, res, next) => {
 
 
 router.post('/delete/:id', (req, res, next) => {
-  
+    
+    let path="public"+req.body.file
+    fs.unlink(path,function(err){
+         if(err) return console.log(err);
+    });  
+   
     Work.findByIdAndDelete(req.params.id) 
     .then(() => 
       User.findOneAndUpdate({ username: req.session.user.username },
@@ -135,9 +151,9 @@ router.post('/delete/:id', (req, res, next) => {
                   user.works.forEach((work)=>{ratingsA.push(work.avRating)})
         
                 User.findByIdAndUpdate(user._id,{rating : average(ratingsA)})
-                    .then((user) => {
+                    .then(() => {
                       Work.findById(req.params.id)  
-                      .then((work) => {
+                      .then(() => {
         
                     res.redirect("/users/"+req.session.user.username+"/profile")
                   })
