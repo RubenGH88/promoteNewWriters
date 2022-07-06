@@ -30,7 +30,7 @@ router.get("/", (req, res, next) => {
 
 
     router.get("/:user/favorite",isLoggedIn, (req, res, next) => {
-
+        //req.session.user.favorites
        res.send("pendiente añadir a favoritos")
         });
 
