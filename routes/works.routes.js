@@ -194,6 +194,7 @@ router.get("/work/:id", (req, res, next) => {
 
 router.get("/rating", async (req, res, next) => {
       
+  
   try {
    
     const allAuthors = await User.find().sort({rating: -1,})
