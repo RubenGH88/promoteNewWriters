@@ -9,8 +9,6 @@ router.get("/", (req, res, next) => {
 res.render("works/works.hbs")
 })
 
-
-
 router.get("/create",isLoggedIn, (req, res, next) => {
     
     res.render("works/create.hbs")
