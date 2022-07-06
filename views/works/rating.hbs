@@ -1,4 +1,20 @@
-<h1>Works search</h1>
+<h1>Ratings</h1>
+
+<h3>Ratings Users</h3>
+
+{{#each authors}}
+<div>
+    <br>
+<a href="/users/{{this.username}}" >{{this.username}}</a>
+  
+  <h4>{{this.rating}}</h4>
+ 
+ <br>
+</div>
+{{/each}}
+<br>
+<br>
+
 <form>
 
   <input type="text" name="type" placeholder="Type">
@@ -10,20 +26,13 @@
 <br>
 <br>
 
-
+<h3>Rating Works</h3>
 {{#each works}}
 <div>
     <br>
 <a href="/works/work/{{this.id}}" >{{this.name}}</a>
-  
-  <h4>{{this.type}}</h4>
-  <h4>{{this.genre}}</h4>
-  <h4>{{this.language}}</h4>
-  <h4>{{this.description}}</h4>
   <h4>{{this.avRating}}</h4>
+ 
  <br>
 </div>
 {{/each}}
-
-
-
