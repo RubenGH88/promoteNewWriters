@@ -43,18 +43,11 @@ router.get("/", (req, res, next) => {
             
             User.findByIdAndUpdate(userLoged._id,{
                 $push: { favorites: req.params.user},
-            })
+            }).then(() => {
+                res.redirect("/");
+            }).catch((err) => console.log(err))
         }
-        res.redirect("/users/"+req.params.user)
-    })
-
-        .catch((err) => console.log(err))
     });
-
-
-
-
-
 
     router.get("/:user/profile",isLoggedIn, (req, res, next) => {
         if(req.params.user!==req.session.user.username){
