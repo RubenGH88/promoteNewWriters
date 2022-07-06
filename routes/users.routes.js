@@ -23,22 +23,28 @@ router.get("/", (req, res, next) => {
     
     .then((user) => {
         if(user===null){res.redirect("/users")}
-    
-        res.render( "users/user",{ user })})
-        
+
+        res.render( "users/user",{ user})
+       })
         .catch((err) => res.render("users/users"));
-    });
+    })
+    
 
 
     router.post("/:user/favorite",isLoggedIn, (req, res, next) => {
-        if(!req.session.user.favorites.includes(req.params.user)){
-            User.findByIdAndUpdate(req.session.user._id,{
+        User.findById(req.session.user._id)
+        .then((userLoged) => {
+        if(!userLoged.favorites.includes(req.params.user)){
+            
+            
+            User.findByIdAndUpdate(userLoged._id,{
                 $push: { favorites: req.params.user},
-            }).then(() => {
-                res.send("Favorito añadido");
-            })
+                
+            }
         }
-        res.send("si te tengo dentro")
+        res.redirect("/users/"+req.params.user)
+    })
+
         .catch((err) => console.log(err))
     });
 
