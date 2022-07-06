@@ -24,11 +24,15 @@ router.get("/", (req, res, next) => {
     .then((user) => {
         if(user===null){res.redirect("/users")}
 
-        res.render( "users/user",{ user})
+     
+       
+           
+        
+        res.render( "users/user",{ user})})
        })
         .catch((err) => res.render("users/users"));
     })
-    
+    });
 
 
     router.post("/:user/favorite",isLoggedIn, (req, res, next) => {
@@ -39,8 +43,7 @@ router.get("/", (req, res, next) => {
             
             User.findByIdAndUpdate(userLoged._id,{
                 $push: { favorites: req.params.user},
-                
-            }
+            })
         }
         res.redirect("/users/"+req.params.user)
     })
