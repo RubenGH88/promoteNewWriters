@@ -1,30 +1,42 @@
-<h1>este es el perfil de {{user.username}}</h1>
-<h2>mi puntuacion es de {{user.rating}}</h2>
+<header>
+    <a href="#" class="logo"><span>Library</span>App</a>
 
-<h2>List of favorites</h2>
+    <nav class="navbar">
+        <a href="#top">Users</a>
+        <a href="#features">Works</a>
+        <a href="./auth/signup">Logout</a>
+        <a href="#">Ratings</a>
+    </nav>
+</header>
+<div class="myprofile">
+  <h1 class="home">este es el perfil de {{user.username}}</h1>
+  <h2>mi puntuacion es de {{user.rating}}</h2>
 
-{{#each user.favorites}}
+  <h2>List of favorites</h2>
 
-<h3>favorites</h3>
+  {{#each user.favorites}}
 
-
-{{/each}}
-
-<h2>Works</h2>
-
-{{#each user.works}}
-<br>
-<h3>Name: {{name}}</h3>
-<h3>Average Rating: {{this.avRating}}</h3>
-<!-- Solo lectura -->
-<a href="/works/edit/{{this.id}}" class="btn">Edit</a>
-
-<form action="/works/delete/{{_id}}" method="POST" >
-        <button type="submit" class="btn">Delete</button>
-      </form>
-<br>
-
-{{/each}}
+  <h3>favorites</h3>
 
 
-<a href="/works/create" class="btn">Add Work</a>
+  {{/each}}
+
+  <h2>Works</h2>
+
+  {{#each user.works}}
+  <br>
+  <h3>Name: {{name}}</h3>
+  <h3>Average Rating: {{this.avRating}}</h3>
+  <!-- Solo lectura -->
+  <a href="/works/edit/{{this.id}}" class="btn">Edit</a>
+
+  <form action="/works/delete/{{_id}}" method="POST" >
+          <button type="submit" class="btn">Delete</button>
+        </form>
+  <br>
+
+  {{/each}}
+
+
+  <a href="/works/create" class="btn">Add Work</a>
+</div>
