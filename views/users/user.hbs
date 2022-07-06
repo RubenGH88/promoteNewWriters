@@ -2,10 +2,13 @@
 <br>
 <h1>Valoracion media de {{user.rating}} <img src="/images/star.png" height="18px"></h1>
 <br>
+
+<h2>{{added}}</h2>
 <form class="rating" action="/users/{{user.username}}/favorite" method="POST">
 <button type="submit">Add Favorites</button>
 </form>
 <br>
+
 
 {{#each user.works}}
 <br>
