@@ -1,12 +1,12 @@
 <div class="divform">
-   <form action="/works/edit/{{work.id}}" method="POST">
+   <form action="/works/edit/{{work.id}}" enctype="multipart/form-data" method="POST">
       <h2 class="formtext1">New Work</h2>
       <p ><input name="name" placeholder="The name of the work" value="{{work.name}}"></p>
       <p ><input name="type" placeholder="The type of the work" value="{{work.type}}"></p>
       <p ><input name="genre" placeholder="The genre of the work" value="{{work.genre}}"></p>
       <p ><input name="language" placeholder="The language of the work" value="{{work.language}}"></p>
       <p ><input name="description" placeholder="The description of the work" value="{{work.description}}"></p>
-    
+      <p ><input type="file" id="file" name="file"  /></p>
       <button type="submit" class="formbutton">Edit Work</button>
       </form>
    {{#if errorMessage}}

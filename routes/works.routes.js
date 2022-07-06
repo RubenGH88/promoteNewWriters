@@ -4,6 +4,7 @@ const User = require("../models/User.model");
 const Work = require("../models/Work.model");
 const average= require("../utils/average")
 
+
 router.get("/", (req, res, next) => {
    
 res.render("works/works.hbs")
@@ -18,6 +19,7 @@ router.get("/create",isLoggedIn, (req, res, next) => {
 
 
 router.post("/create",isLoggedIn, (req, res, next) => {
+ 
   if (!req.files) {
     res.send("File was not found");
     return;
@@ -25,6 +27,7 @@ router.post("/create",isLoggedIn, (req, res, next) => {
   const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   
   req.body.file="/files/"+randomName+".pdf"
+
   Work.create(req.body)
   
   .then((work) => {
@@ -68,9 +71,22 @@ router.get('/edit/:id',isLoggedIn, (req, res, next) => {
 
 
 router.post("/edit/:id",isLoggedIn, (req, res, next) => {
+  
+  if (!req.files) {
+    res.send("File was not found");
+    return;
+  }
+  const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  
+  req.body.file="/files/"+randomName+".pdf"
 
     Work.findByIdAndUpdate(req.params.id,req.body)
     .then((work) => {
+      let file = req.files.file;
+      file.mv(`${__dirname}/../public/files/${randomName}.pdf`, (err) => {
+        console.log(err)
+      });
+
       
         res.redirect("/users/"+req.session.user.username+"/profile")
     })
@@ -85,7 +101,7 @@ router.post("/edit/:id",isLoggedIn, (req, res, next) => {
 
 
 router.post('/delete/:id', (req, res, next) => {
-    
+  
     Work.findByIdAndDelete(req.params.id) 
     .then(() => 
       User.findOneAndUpdate({ username: req.session.user.username },
@@ -125,9 +141,9 @@ router.get("/work/:id", (req, res, next) => {
 
 
   Work.findById(req.params.id)  
-  .then((work)=>{ console.log(work.id)
+  .then((work)=>{ 
     let ratings=work.ratings
-    console.log(ratings)
+    
   Work.findByIdAndUpdate(work.id,{avRating : average(ratings)})
 
   .then(()=>{
