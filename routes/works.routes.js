@@ -4,9 +4,32 @@ const User = require("../models/User.model");
 const Work = require("../models/Work.model");
 const average= require("../utils/average")
 
-router.get("/", (req, res, next) => {
+
+router.get("/", async (req, res, next) => {
+  try {
+    let works
+    const allWorks = await Work.find()
+  
+    // debo buscar el pokemon del URL
+    const filteredWorks = await Work.find({ type: req.query.type,
+      genre: req.query.genre,
+      language: req.query.language })
+
+    
+  
+      if(filteredWorks.length===0){works=allWorks}
+      if(filteredWorks.length!==0){works=filteredWorks}
+      
+      res.render("works/works",{works});
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+      
+    
+    
    
-res.render("works/works.hbs")
 })
 
 router.get("/create",isLoggedIn, (req, res, next) => {
@@ -166,6 +189,38 @@ router.get("/work/:id", (req, res, next) => {
         .catch((err) => {
             next(err);
           });
+});
+
+
+router.get("/rating", async (req, res, next) => {
+      
+  try {
+   
+    const allAuthors = await User.find().sort({rating: -1,})
+    let authors=[...allAuthors].splice(0,5)
+  
+    // debo buscar el pokemon del URL
+    const allWorksSorted = await Work.find().sort({avRating: -1,})
+    const filteredWorksSorted = await Work.find({ type: req.query.type,
+      genre: req.query.genre,
+      language: req.query.language }).sort({avRating: -1,})
+
+    
+      let allWorks
+      if(filteredWorksSorted.length===0){allWorks=allWorksSorted}
+      if(filteredWorksSorted.length!==0){allWorks=filteredWorksSorted}
+
+
+
+    let works=[...allWorks].splice(0,5)
+    
+      
+      res.render("works/rating",{works,authors});
+    
+  } catch (error) {
+    console.log(error)
+  }
+
 });
 
 router.post("/rating", (req, res, next) => {
