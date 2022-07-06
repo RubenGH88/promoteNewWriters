@@ -1,10 +1,23 @@
 {{#each user}}
-
-<a href="/users/{{username}}" class="btn">{{username}}</a>
-
-<h1>Number of works: {{works.length}}</h1>
-
-<h1>Rating: {{rating}}</h1>
+<div class="userlistbg">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/users/{{username}}">{{username}}</a></h4>
+                    <h5>Rating: {{rating}}</h5>
+                    <h5>Number of works: {{works.length}}</h5>
+                    <hr style="margin:8px auto">
+<br>
+                    <a href="#"><span class="label label-danger">User works</span></a>
+                    <a><span class="label label-default">2</span></a>
+                    <a href="#"><span class="label label-success">3</span></a>
+                    <a href="#"><span class="label label-warning">4</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Solo lectura -->
 
 

@@ -35,17 +35,10 @@ router.get("/", (req, res, next) => {
             User.findByIdAndUpdate(req.session.user._id,{
                 $push: { favorites: req.params.user},
             }).then(() => {
-                res.send("Favorito añadido");
-            })
+                res.redirect("/");
+            }).catch((err) => console.log(err))
         }
-        res.send("si te tengo dentro")
-        .catch((err) => console.log(err))
     });
-
-
-
-
-
 
     router.get("/:user/profile",isLoggedIn, (req, res, next) => {
         if(req.params.user!==req.session.user.username){
