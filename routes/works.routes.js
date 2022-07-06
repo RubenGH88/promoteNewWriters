@@ -4,6 +4,7 @@ const User = require("../models/User.model");
 const Work = require("../models/Work.model");
 const average= require("../utils/average")
 
+
 router.get("/", (req, res, next) => {
    
 res.render("works/works.hbs")
