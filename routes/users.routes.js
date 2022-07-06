@@ -2,7 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Work = require("../models/Work.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
-const average= require("../utils/average")
+const average= require("../utils/average");
+const { findByIdAndUpdate } = require("../models/User.model");
 
 
 router.get("/", (req, res, next) => {
@@ -29,10 +30,18 @@ router.get("/", (req, res, next) => {
     });
 
 
-    router.get("/:user/favorite",isLoggedIn, (req, res, next) => {
-        //req.session.user.favorites
-       res.send("pendiente añadir a favoritos")
-        });
+    router.post("/:user/favorite",isLoggedIn, (req, res, next) => {
+        if(!req.session.user.favorites.includes(req.params.user)){
+            User.findByIdAndUpdate(req.session.user._id,{
+                $push: { favorites: req.params.user},
+            }).then(() => {
+                res.send("Favorito añadido");
+            })
+        }
+        res.send("si te tengo dentro")
+        .catch((err) => console.log(err))
+    });
+
 
 
 
