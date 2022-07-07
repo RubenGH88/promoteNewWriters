@@ -69,7 +69,7 @@ router.get("/", (req, res, next) => {
         .populate("works")   
 
         .then((user) => 
-        res.render("users/profile.hbs", { user }))
+        res.render("users/profile.hbs",  {user} ))
         
         .catch((err) => console.log(err));
     });
