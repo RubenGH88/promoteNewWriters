@@ -7,26 +7,34 @@
         <a href="/auth/logout">Logout</a>
     </nav>
 </header>
+<div class="profilebg">
+  <div class="myprofile">
+    <div class="ratings">
+    <h1>Works search</h1>
+    <form>
+      <input type="text" name="type" placeholder="Type">
+      <input type="text" name="genre" placeholder="genre">
+      <input type="text" name="language" placeholder="language">
+      <button>Work Search</button>
+    </form>
 
-<h1>Works search</h1>
-<form>
-  <input type="text" name="type" placeholder="Type">
-  <input type="text" name="genre" placeholder="genre">
-   <input type="text" name="language" placeholder="language">
-  <button>Work Search</button>
-</form>
-
-
-{{#each works}}
-<div>
-    <br>
-<a href="/works/work/{{this.id}}" >{{this.name}}</a>
-  
-  <h4>{{this.type}}</h4>
-  <h4>{{this.genre}}</h4>
-  <h4>{{this.language}}</h4>
-  <h4>{{this.description}}</h4>
-  <h4>{{this.avRating}}</h4>
- <br>
+    <div class="centerdiv">
+    {{#each works}}
+    <figure class="snip1559">
+      <div>
+          <br>
+      <a href="/works/work/{{this.id}}" >{{this.name}}</a>
+        
+        <h4>{{this.type}}</h4>
+        <h4>{{this.genre}}</h4>
+        <h4>{{this.language}}</h4>
+        <h4>{{this.description}}</h4>
+        <h4>{{this.avRating}}</h4>
+      <br>
+      </div>
+    </figure>
+    {{/each}}
+    </div>
+    </div>
+  </div>
 </div>
-{{/each}}
