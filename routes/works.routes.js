@@ -9,6 +9,10 @@ const fs= require("fs")
 
 router.get("/", async (req, res, next) => {
   try {
+    let logged=false
+
+if(req.session.user){logged=true}
+
     let works
     const allWorks = await Work.find()
   
@@ -21,7 +25,7 @@ router.get("/", async (req, res, next) => {
       if(filteredWorks.length===0){works=allWorks}
       if(filteredWorks.length!==0){works=filteredWorks}
       
-      res.render("works/works",{works});
+      res.render("works/works",{works,logged});
     
   } catch (error) {
     console.log(error)
@@ -31,11 +35,13 @@ router.get("/", async (req, res, next) => {
 })
 
 router.get("/create",isLoggedIn, (req, res, next) => {
-    
+  let logged=false
+
+  if(req.session.user){logged=true}
    
     
     
-    res.render("works/create.hbs")
+    res.render("works/create.hbs",{logged})
 })
 
 router.post("/create",isLoggedIn, (req, res, next) => {
@@ -78,11 +84,13 @@ router.post("/create",isLoggedIn, (req, res, next) => {
 
 
 router.get('/edit/:id',isLoggedIn, (req, res, next) => {
-    
+    let logged=false
+
+if(req.session.user){logged=true}
     Work.findById(req.params.id)
     .then((work) => {
       
-      res.render("works/edit.hbs", { work });
+      res.render("works/edit.hbs", { work ,logged});
     })
     .catch((err) => {
       next(err);
@@ -93,13 +101,13 @@ router.get('/edit/:id',isLoggedIn, (req, res, next) => {
 
 router.post("/edit/:id",isLoggedIn, (req, res, next) => {
   
-  if (!req.files) {console.log("no hay archivo")
+  if (!req.files) {
     Work.findByIdAndUpdate(req.params.id,req.body)
     .then((work) => {
     res.redirect("/users/"+req.session.user.username+"/profile")
   });
   }
-else{console.log("si hay archivo")
+else{
   let path="public"+req.body.file
     fs.unlink(path,function(err){
          if(err) return console.log(err);
@@ -173,7 +181,9 @@ router.post('/delete/:id', (req, res, next) => {
 
 
 router.get("/work/:id", (req, res, next) => {
+  let logged=false
 
+  if(req.session.user){logged=true}
 
   Work.findById(req.params.id)  
   .then((work)=>{ 
@@ -196,7 +206,7 @@ router.get("/work/:id", (req, res, next) => {
             Work.findById(req.params.id)  
             .then((work) => {
         
-              res.render( "works/work",{ work })
+              res.render( "works/work",{ work,logged })
             })
           })
       })
@@ -213,7 +223,9 @@ router.get("/rating", async (req, res, next) => {
       
   
   try {
-   
+    let logged=false
+
+if(req.session.user){logged=true}
     const allAuthors = await User.find().sort({rating: -1,})
     let authors=[...allAuthors].splice(0,5)
   
@@ -233,7 +245,7 @@ router.get("/rating", async (req, res, next) => {
     let works=[...allWorks].splice(0,5)
     
       
-      res.render("works/rating",{works,authors});
+      res.render("works/rating",{works,authors,logged});
     
   } catch (error) {
     console.log(error)

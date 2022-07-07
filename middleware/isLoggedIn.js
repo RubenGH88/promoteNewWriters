@@ -4,5 +4,6 @@ module.exports = (req, res, next) => {
     return res.redirect("/auth/login");
   }
   req.user = req.session.user;
+  
   next();
 };

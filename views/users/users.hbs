@@ -1,16 +1,27 @@
 <header>
     <a href="#" class="logo"><span>Library</span>App</a>
     <nav class="navbar">
-        <a href="/users/profile">My profile</a>
-        <a href="/users">Users</a>
+       
+       
+        <a href="/works">Works</a>
         <a href="/works/rating">Ratings</a>
-       <a href="/auth/logout">Logout</a>
+         {{#if logged}}
+          <a href="/users/profile">My profile</a>
+   <a href="/auth/logout">Logout</a>
+   {{else}}
+     <a href="./auth/signup">Register</a>
+        <a href="./auth/login">Login</a>
+   {{/if}}
+       
     </nav>
 </header>
+
+
 
 <div class="profilebg">
     <div class="myprofile">
     <h1 class="userlist">User list</h1>
+  
     {{#each user}}
     <div class="userlistbg">
         <div class="row">
@@ -32,5 +43,6 @@
 
 
     {{/each}}
+
     </div>
 </div>
