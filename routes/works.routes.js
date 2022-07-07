@@ -176,6 +176,7 @@ router.get("/work/:id", (req, res, next) => {
 
   Work.findById(req.params.id)  
   .then((work)=>{ 
+    
     let ratings=work.ratings
     
   Work.findByIdAndUpdate(work.id,{avRating : average(ratings)})
