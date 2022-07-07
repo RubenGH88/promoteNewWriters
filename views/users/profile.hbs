@@ -2,41 +2,50 @@
     <a href="#" class="logo"><span>Library</span>App</a>
 
     <nav class="navbar">
-        <a href="#top">Users</a>
-        <a href="#features">Works</a>
-        <a href="./auth/signup">Logout</a>
-        <a href="#">Ratings</a>
+        <a href="#top">My profile</a>
+        <a href="./users.hbs">Users</a>
+        <a href="./auth/signup">Ratings</a>
+        <a href="./auth/login">Logout</a>
     </nav>
 </header>
-<div class="myprofile">
-  <h1 class="home">este es el perfil de {{user.username}}</h1>
-  <h2>mi puntuacion es de {{user.rating}}</h2>
 
-  <h2>List of favorites</h2>
+<div class="profilebg">
+  <div class="myprofile">
+    <h1 class="h1profile">este es el perfil de {{user.username}}</h1>
+    <h2 class="h2profile">Mi valoración media: {{user.rating}}</h2>
 
-  {{#each user.favorites}}
+    <h2 class="profilefavs">List of favorites</h2>
 
-  <h3>favorites</h3>
+    {{#each user.favorites}}
+
+    <a href="../{{this}}" class="profilefavs2">{{this}}</a>
+    <form method="POST" action="/users/{{this}}/favorite">
+    <button class="btn">Delete</button><br>
+    </form>
+    {{/each}}
+<hr class="hrprofile">
+<!-- -->
+  <div class="container">
+    <h2 class="center">Works</h2>
+  </div>
+
+    {{#each user.works}}
+    <br>
+    <div class="episode__content">
+      <h3 class="title">Name: </h3>
+      <p class="story">{{name}}</p>
+      <h3 class="title">Average Rating: </h3>
+      <p class="story">{{this.avRating}}</p>
+      <!-- Solo lectura -->
+      <a href="/works/edit/{{this.id}}" class="btnprofile">Edit</a>
+      <form action="/works/delete/{{_id}}" method="POST" >
+              <button type="submit" class="btnprofile2">Delete</button>
+            </form>
+      <br>
+    </div>
+    {{/each}}
 
 
-  {{/each}}
-
-  <h2>Works</h2>
-
-  {{#each user.works}}
-  <br>
-  <h3>Name: {{name}}</h3>
-  <h3>Average Rating: {{this.avRating}}</h3>
-  <!-- Solo lectura -->
-  <a href="/works/edit/{{this.id}}" class="btn">Edit</a>
-
-  <form action="/works/delete/{{_id}}" method="POST" >
-          <button type="submit" class="btn">Delete</button>
-        </form>
-  <br>
-
-  {{/each}}
-
-
-  <a href="/works/create" class="btn">Add Work</a>
+    <a href="/works/create" class="btnprofile">Add Work</a>
+  </div>
 </div>

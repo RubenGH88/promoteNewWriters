@@ -1,24 +1,26 @@
-{{#each user}}
-<div class="userlistbg">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="media">
-                <div class="media-body">
-                    <h4 class="media-heading"><a href="/users/{{username}}">{{username}}</a></h4>
-                    <h5>Rating: {{rating}}</h5>
-                    <h5>Number of works: {{works.length}}</h5>
-                    <hr style="margin:8px auto">
-<br>
-                    <a href="#"><span class="label label-danger">User works</span></a>
-                    <a><span class="label label-default">2</span></a>
-                    <a href="#"><span class="label label-success">3</span></a>
-                    <a href="#"><span class="label label-warning">4</span></a>
+<div class="profilebg">
+    <div class="myprofile">
+    <h1 class="userlist">User list</h1>
+    {{#each user}}
+    <div class="userlistbg">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="/users/{{username}}">{{username}}</a></h4>
+                        <h5 class="media-rating">User rating: {{rating}}</h5>
+                        <h5 class="media-works">Works submited: {{works.length}}</h5>
+                        <hr class="hrprofile2"">
+    <br>
+                        <a href="/users/{{username}}"><span class="label-danger">User profile</span></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Solo lectura -->
+
+
+    {{/each}}
+    </div>
 </div>
-<!-- Solo lectura -->
-
-
-{{/each}}

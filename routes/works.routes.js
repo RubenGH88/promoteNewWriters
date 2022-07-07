@@ -150,7 +150,6 @@ router.post('/delete/:id', (req, res, next) => {
         
         .catch((err) => console.log(err));
 
-
 });
 
 
