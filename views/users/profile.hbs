@@ -20,7 +20,7 @@
 
     <a href="../{{this}}" class="profilefavs2">{{this}}</a>
     <form method="POST" action="/users/{{this}}/favorite">
-    <button class="btn">Delete</button><br>
+    <button class="">Delete</button><br>
     </form>
     {{/each}}
 <hr class="hrprofile">
@@ -31,21 +31,26 @@
 
     {{#each user.works}}
     <br>
-    <div class="episode__content">
-      <h3 class="title">Name: </h3>
-      <p class="story">{{name}}</p>
-      <h3 class="title">Average Rating: </h3>
-      <p class="story">{{this.avRating}}</p>
-      <!-- Solo lectura -->
-      <a href="/works/edit/{{this.id}}" class="btnprofile">Edit</a>
-      <form action="/works/delete/{{_id}}" method="POST" >
-              <button type="submit" class="btnprofile2">Delete</button>
-            </form>
-      <br>
+    <div class="center-avg">
+      <div class="episode__content">
+        <h3 class="title">Name: </h3>
+        <p class="story">{{name}}</p>
+        <h3 class="title">Average Rating: </h3>
+        <p class="story">{{this.avRating}}</p>
+        <!-- Solo lectura -->
+        <div class="buttondelete">
+          <a href="/works/edit/{{this.id}}" class="btnprofile">Edit</a>
+          <form action="/works/delete/{{_id}}" method="POST" >
+                  <button type="submit" class="btnprofile2">Delete</button>
+                </form>
+          <br>
+        </div>
+      </div>
+      {{/each}}
     </div>
-    {{/each}}
 
-
-    <a href="/works/create" class="btnprofile">Add Work</a>
+  <div class="buttonwork">
+    <a href="/works/create" class="btnprofile3">Add Work</a>
+  </div>
   </div>
 </div>
