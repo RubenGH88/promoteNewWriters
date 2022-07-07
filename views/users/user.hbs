@@ -1,24 +1,66 @@
-<h1>Este es el perfil de {{user.username}}</h1>
-<br>
-<h1>Valoracion media de {{user.rating}} <img src="/images/star.png" height="18px"></h1>
-<br>
+<header>
+    <a href="#" class="logo"><span>Library</span>App</a>
 
-<h2>{{added}}</h2>
-<form class="rating" action="/users/{{user.username}}/favorite" method="POST">
-<button type="submit">Add Favorites</button>
-</form>
-<br>
+    <nav class="navbar">
+        <a href="#top">Home</a>
+        <a href="#features">Features</a>
+        <a href="./auth/signup">Register</a>
+        <a href="./auth/login">Login</a>
+    </nav>
+</header>
 
-{{#each user.works}}
-<br>
-<h1>Name: {{this.name}}</h1>
-<h1>Type: {{this.type}}</h1>
-<h1>Genre: {{this.genre}}</h1>
-<h1>Language: {{this.language}}</h1>
-<h1>Description: {{this.description}}</h1>
-<h1>Average Rating: {{this.avRating}}</h1>
-<!-- Solo lectura -->
-<a href="/works/work/{{this.id}}" class="btn">Work</a>
-<br>
+<div class="profilebg">
+    <div class="myprofile">
+        <h1 class="h1profile">Este es el perfil de {{user.username}}</h1>
+        <br>
+        <h2 class="h2profile">Valoracion media: {{user.rating}}</h2>
+        <br>
 
-{{/each}}
+        <h2 class="profilefavs">{{added}}</h2>
+        <form class="rating" action="/users/{{user.username}}/favorite" method="POST">
+        <button type="submit">Add Favorites</button>
+        </form>
+        <form class="rating" action="" method="POST">
+            <button type="submit">Delete Favorites</button>
+        </form>
+        <form class="rating">
+        <button onclick="myFunction()">Enviar email</button>
+        </form>
+        <form class="rating">
+        <button onclick="myFunction2()">Donar</button>
+        </form>
+        <hr class="hrprofile">
+        <br>
+
+        {{#each user.works}}
+        <br>
+        <div class="episode__content">
+            <h1 class="title">Name:</h1>
+            <p class="story">{{this.name}}</p>
+            <h1 class="title">Type:</h1>
+            <p class="story">{{this.type}}</p>
+            <h1 class="title">Genre:</h1>
+            <p class="story">{{this.genre}}</p>
+            <h1 class="title">Language:</h1>
+            <p class="story">{{this.language}}</p>
+            <h1 class="title">Description:</h1>
+            <p class="story">{{this.description}}</p>
+            <h1 class="title">Average Rating:</h1>
+            <p class="story">{{this.avRating}}</p>
+            <!-- Solo lectura -->
+            <a href="/works/work/{{this.id}}" class="btnprofile">Work</a>
+            <br>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+function myFunction() {
+  alert("Email sent");
+}
+
+function myFunction2() {
+  alert("Me acabas de pagar la hipoteca, cuidado donde donas.");
+}
+</script>

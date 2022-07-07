@@ -1,13 +1,27 @@
 <div class="divform">
-   <form action="/works/edit/{{work.id}}" enctype="multipart/form-data" method="POST">
-      <h2 class="formtext1">New Work</h2>
+   <form class="loginregister2"action="/works/edit/{{work.id}}" enctype="multipart/form-data" method="POST">
+      <h2 class="">New Work</h2>
       <p ><input name="name" placeholder="The name of the work" value="{{work.name}}"></p>
-      <p ><input name="type" placeholder="The type of the work" value="{{work.type}}"></p>
-      <p ><input name="genre" placeholder="The genre of the work" value="{{work.genre}}"></p>
-      <p ><input name="language" placeholder="The language of the work" value="{{work.language}}"></p>
-      <p ><input name="description" placeholder="The description of the work" value="{{work.description}}"></p>
-      <p ><input name="file" value="{{work.file}}" hidden></p>
-      <p ><input type="file" id="file" name="file"></p>
+      <p>Type</p>
+      <select name="type" id="type">
+      <option value="Short Story">Short Story</option>
+      <option value="Poetry">Poetry</option>
+      <option value="Song">Song</option>
+      <option value="Theater">Theater</option>
+      <option value="Narrative">Narrative</option>
+      </select>
+      <p>Genre</p>      
+      <select name="genre" id="type">
+      <option value="Drama">Drama</option>
+      <option value="Romance">Romance</option>
+      <option value="Erotic">Erotic</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Terror">Terror</option>
+      <option value="Others">Others</option>
+      </select>
+      <p><input name="language" placeholder="The language of the work" value="{{work.language}}"></p>
+      <p><input name="description" placeholder="The description of the work" value="{{work.description}}"></p>
+      <p><input type="file" id="file" name="file"/></p>
       <button type="submit" class="formbutton">Edit Work</button>
       </form>
    {{#if errorMessage}}

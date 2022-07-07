@@ -264,7 +264,20 @@ header .navbar a:hover{
   max-width:calc(100vw - 40px);
   box-sizing:border-box;
   position:relative
-  }
+}
+.loginregister2{
+  width:340px;
+  height:600px;
+  background:#e6e6e6;
+  border-radius:8px;
+  box-shadow:0 0 40px -10px #000;
+  margin:calc(50vh - 220px) auto;
+  padding:20px 30px;
+  max-width:calc(100vw - 40px);
+  box-sizing:border-box;
+  position:relative
+}
+
 form h2{
   margin:10px 0;
   padding-bottom:10px;
@@ -286,9 +299,6 @@ form input{
   border-bottom:2px solid #bebed2
 }
 
-form input:focus{
-  border-bottom:2px solid #78788c
-}
 
 form p::before{
   content:attr(type);
@@ -405,6 +415,10 @@ form button:hover{
 }
 /* Rating end */
 /* User list start */
+.userlist{
+  text-align: center;
+  font-size: 25px;
+}
 .media{
   box-shadow:0px 0px 4px -2px #000; 
   margin: 20px 0; 
@@ -413,6 +427,15 @@ form button:hover{
   }
   .media-body{
   padding:10px;
+  }
+  .media-heading{
+    font-size: 25px;
+  }
+  .media-rating{
+    font-size: 20px;
+  }
+  .media-works{
+    font-size: 20px;
   }
   .media-body a
   {text-decoration:none;
@@ -431,8 +454,145 @@ form button:hover{
   -webkit-transform:rotate(360deg);
   -webkit-font-smoothing:antialiased;
   }
+  .hrprofile2{
+    margin: 8px auto;
+    border: 1px solid red;
+  }
+  .label-danger{
+    font-size: 20px;
+  }
   /* User list ends */
   /* Own profile starts */
-  .myprofile{
-    margin-top: 80px;
+  .profilebg{
+    background: url("/images/Library_bg.jpg");
+    background-repeat: repeat;
   }
+
+  .myprofile{
+    margin-top: 70px;
+    margin-left: 330px;
+    width: 1200px;
+    height: 100%;
+    padding: 10px 50px 0px 50px;
+    background-color: white;
+  }
+  .h1profile{
+    text-align: center;
+    font-size: 35px;
+    font-style: italic;
+  }
+  .h2profile{
+    text-align: center;
+    font-size: 25px;
+    font-style: italic;
+  }
+  .profilefavs{
+    margin-top: 30px;
+    font-size: 55px;
+    color: #F83292
+  }
+  .profilefavs2{
+    font-size: 30px;
+    color: #666;
+  }
+  .hrprofile{
+    border: 1px solid red;
+  }
+  .container {
+    width: 95%;
+    max-width: 1220px;
+    margin: 0 auto;
+  }
+  .center { 
+    text-align: center;
+    font-size: 30px;
+    margin-top: 10px;
+  }
+  .episode__content {
+    border-top: 2px solid #fff;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 10px;
+    padding: 15px 0;
+  }
+  .episode__content .title {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  
+  .episode__content .story {
+    line-height: 30px;
+    font-size: 13px;
+  }
+  .episode__number {
+    font-size: 10vw;
+    font-weight: 600;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    text-align: center;
+    height: calc(10vw + 20px);
+    transition: all 0.2s ease-in;
+  }
+  /*
+  ----------------------------- Boton --------------------------
+  */
+  .btnprofile {
+    display: inline-block;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: white;
+    border-radius: 0;
+    padding: 18px 80px 20px;
+    transition: all 0.7s ease-out;
+    background-image: linear-gradient(to right, #F83292 0%, #814096 51%, #F83292 100%);
+  
+    background-position: 1% 50%;
+    background-size: 300% 300%;
+    text-decoration: none;
+    margin: 0.625rem; 
+    border: none;
+    border: 1px solid rgba(223,190,106,0.3);
+  }
+  
+  .btnprofile:hover {
+    color: white;
+    border: 1px solid rgba(223,190,106,0);
+    color: #814096;
+    background-position: right center;
+  }
+
+  .btnprofile2 {
+    justify-content: flex-start;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: white;
+    border-radius: 0;
+    padding: 18px 80px 20px;
+    transition: all 0.7s ease-out;
+    background-image: linear-gradient(to right, black 0%, #F83292 51%, black 100%);
+  
+    background-position: 1% 50%;
+    background-size: 300% 300%;
+    text-decoration: none;
+    margin: 0.625rem;
+    border: none;
+    border: 1px solid rgba(223,190,106,0.3);
+  }
+  
+  .btnprofile2:hover {
+    color: white;
+    border: 1px solid rgba(223,190,106,0);
+    color: #814096;
+    background-position: right center;
+  }
+  /* Own profile ends */
+  /* Search bar */
