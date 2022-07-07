@@ -1,10 +1,10 @@
 <header>
     <a href="#" class="logo"><span>Library</span>App</a>
     <nav class="navbar">
-        <a href="/users/:id">My profile</a>
+        <a href="/users/profile">My profile</a>
         <a href="/users">Users</a>
         <a href="/works/rating">Ratings</a>
-        <a href="/logout">Logout</a>
+       <a href="/auth/logout">Logout</a>
     </nav>
 </header>
 
@@ -20,7 +20,7 @@
                         <h4 class="media-heading"><a href="/users/{{username}}">{{username}}</a></h4>
                         <h5 class="media-rating">User rating: {{rating}}</h5>
                         <h5 class="media-works">Works submited: {{works.length}}</h5>
-                        <hr class="hrprofile2"">
+                        <hr class="hrprofile2">
     <br>
                         <a href="/users/{{username}}"><span class="label-danger">User profile</span></a>
                     </div>

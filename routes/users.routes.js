@@ -15,6 +15,19 @@ router.get("/", (req, res, next) => {
       .catch((err) => console.log(err));
   });
 
+  router.get("/profile",isLoggedIn, (req, res, next) => {
+    console.log("intentando acceder perfil")
+
+     User.findById(req.session.user._id)
+     .populate("works")   
+
+     .then((user) => {
+     res.render("users/profile.hbs",  {user} )})
+     
+     .catch((err) => console.log(err));
+ });
+    
+
 
   router.get("/:user", async (req, res, next) => {
     try {
@@ -53,7 +66,7 @@ router.get("/", (req, res, next) => {
                 }).then(()=>{})
                 
             }
-            res.redirect("/users/"+req.params.user)
+            res.redirect("/users/"+req.session.user.username+"/profile")
         })
         
             
@@ -61,33 +74,21 @@ router.get("/", (req, res, next) => {
         .catch((err) => console.log(err))
     });
 
-    router.post("/:user/favorite", isLoggedIn, (req, res, next) => {
-        res.send("Hola")
+    router.post("/:user/delete", isLoggedIn, (req, res, next) => {
+      
         User.findByIdAndUpdate(req.session.user._id, {$pull : {favorites : req.params.user}})
             
                 .then(() => {  
-        res.redirect("/users")    
+        res.redirect("/users/"+req.session.user.username+"/profile")    
         })
             
             .catch((err) => console.log(err));
     
-            
+
     });
 
 
-    router.get("/:user/profile",isLoggedIn, (req, res, next) => {
-        if(req.params.user!==req.session.user.username){
-            res.redirect("/users")}
-
-        User.findOne({ username: req.params.user })
-        .populate("works")   
-
-        .then((user) => {
-        res.render("users/profile.hbs",  {user} )})
-        
-        .catch((err) => console.log(err));
-    });
-       
+  
   
 
 
