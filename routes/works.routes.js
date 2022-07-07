@@ -50,6 +50,7 @@ router.post("/create",isLoggedIn, (req, res, next) => {
 
   Work.create(req.body)
   
+  
   .then((work) => {
     
     let file = req.files.file;
