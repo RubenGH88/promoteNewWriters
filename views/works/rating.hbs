@@ -8,41 +8,48 @@
     </nav>
 </header>
 
-<h1>Ratings</h1>
+<div class="profilebg">
+  <div class="myprofile">
+    <div class="ratings">
+      <h1> User rating</h1>
+      {{#each authors}}
+      <figure class="snip1559">
+        <div class="profile-image"><img src="" alt="profile-sample2" /></div>
+        <figcaption>
+        <a href="/users/{{this.username}}" >{{this.username}}</a>
 
-<h3>Ratings Users</h3>
+        <h3>User rating:</h3>
 
-{{#each authors}}
-<div>
-    <br>
-<a href="/users/{{this.username}}" >{{this.username}}</a>
-  
-  <h4>{{this.rating}}</h4>
- 
- <br>
-</div>
-{{/each}}
-<br>
-<br>
-<!--
-    <div class="search-box">
-    <button class="btn-search"><i class="fas fa-search"></i></button>
-    <input type="text" class="input-search" placeholder="Type to Search...">
+        
+        <div>
+        <br>
+        <a href="/users/{{this.username}}" >{{this.username}}</a>
+          
+          <h4>{{this.rating}} <img src="/images/star.png" height="20px" width="20px"></h4>
+        
+        <br>
+        </figcaption>
+      </figure>
+        {{/each}}
+        <br>
+        <br>
+
+        <br>
+        <br>
+
+    <hr class="hrprofile2">
+    <h1>Rating Works</h1>
+    {{#each works}}
+  <figure class="snip1559">
+    <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample2.jpg" alt="profile-sample2" /></div>
+      <div>
+      <br>
+      <a href="/works/work/{{this.id}}" >{{this.name}}</a>
+        <h4>{{this.avRating}}</h4>
+      <br>
+      </div>
+  </figure>
+      {{/each}}
+    </div>
   </div>
-
-</div> 
--->
-
-<br>
-<br>
-
-<h3>Rating Works</h3>
-{{#each works}}
-<div>
-    <br>
-<a href="/works/work/{{this.id}}" >{{this.name}}</a>
-  <h4>{{this.avRating}}</h4>
- 
- <br>
 </div>
-{{/each}}

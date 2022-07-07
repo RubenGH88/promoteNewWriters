@@ -466,6 +466,7 @@ form button:hover{
   .profilebg{
     background: url("/images/Library_bg.jpg");
     background-repeat: repeat;
+    height: fit-content;
   }
 
   .myprofile{
@@ -595,4 +596,96 @@ form button:hover{
     background-position: right center;
   }
   /* Own profile ends */
-  /* Search bar */
+  /* Ratings */
+  .ratings{
+    margin-top: 80px;
+  }
+
+  /* Cards */
+  .snip1559 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 10px;
+    min-width: 250px;
+    max-width: 310px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #2B2B2B;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  }
+  
+  .snip1559 * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .snip1559 .profile-image {
+    padding: 15% 10% 0;
+  }
+  
+  .snip1559 .profile-image img {
+    max-width: 100%;
+    vertical-align: top;
+    position: relative;
+    border-radius: 50%;
+    max-width: 40%;
+  }
+  
+  .snip1559 figcaption {
+    padding: 5% 10% 15%;
+  }
+  
+  .snip1559 h3 {
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 3px 0;
+  }
+  
+  .snip1559 h5 {
+    font-weight: 400;
+    margin: 0;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 1px;
+  }
+  
+  .snip1559 .icons i {
+    color: #999;
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 1.5em;
+  }
+  
+  .snip1559 .icons i:hover {
+    color: #555;
+  }
+  
+  .snip1559 .icons i a {
+    text-decoration: none;
+  }
+  .centerdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ratings */
+.margintopratings{
+  margin-top: 80px;
+}
+
+.cajaratings{
+  margin-top: 100px;
+  padding-top: 10px;
+  width: 500px;
+  height: 450px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+}
