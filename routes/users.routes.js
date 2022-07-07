@@ -68,8 +68,8 @@ router.get("/", (req, res, next) => {
         User.findOne({ username: req.params.user })
         .populate("works")   
 
-        .then((user) => 
-        res.render("users/profile.hbs",  {user} ))
+        .then((user) => {
+        res.render("users/profile.hbs",  {user} )})
         
         .catch((err) => console.log(err));
     });
