@@ -37,7 +37,6 @@ section {
 }
 .btn{
   display: inline-block;
-  margin-top: 1rem;
   padding: .8rem 3rem;
   border-radius: 5rem;
   background: black;
@@ -539,7 +538,6 @@ form button:hover{
   ----------------------------- Boton --------------------------
   */
   .btnprofile {
-    display: inline-block;
     background: transparent;
     text-transform: uppercase;
     font-weight: 500;
@@ -568,7 +566,6 @@ form button:hover{
   }
 
   .btnprofile2 {
-    justify-content: flex-start;
     background: transparent;
     text-transform: uppercase;
     font-weight: 500;
@@ -595,6 +592,48 @@ form button:hover{
     color: #814096;
     background-position: right center;
   }
+
+  .btnprofile3 {
+    margin-top: 100px;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: white;
+    border-radius: 0;
+    padding: 18px 80px 20px;
+    transition: all 0.7s ease-out;
+    background-image: linear-gradient(to right, black 0%, #F83292 51%, black 100%);
+  
+    background-position: 1% 50%;
+    background-size: 300% 300%;
+    text-decoration: none;
+    margin: 0.625rem;
+    border: none;
+    border: 1px solid rgba(223,190,106,0.3);
+  }
+  
+  .btnprofile3:hover {
+    color: white;
+    border: 1px solid rgba(223,190,106,0);
+    color: #814096;
+    background-position: right center;
+  }
+
+  .btn2{
+    justify-items: auto;
+    padding: .8rem 3rem;
+    border-radius: 5rem;
+    background: black;
+    font-size: 1.7rem;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    transition: all .3s linear;
+  }
+
   /* Own profile ends */
   /* Ratings */
   .ratings{
@@ -688,4 +727,17 @@ form button:hover{
   margin: auto;
   text-align: center;
   background-color: white;
+}
+
+.buttonwork{
+  margin-top: 100px;
+  margin-left: 400px
+}
+
+.buttondelete{
+  display: flex;
+}
+
+.center-avg{
+  align-items: center;
 }
