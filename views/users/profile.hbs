@@ -1,10 +1,16 @@
 <header>
     <a href="#" class="logo"><span>Library</span>App</a>
     <nav class="navbar">
-         <a href="/users/profile">My profile</a>
-        <a href="/users">Users</a>
+          <a href="/users">Users</a>
+          <a href="/works">Works</a>
         <a href="/works/rating">Ratings</a>
-        <a href="/auth/logout">Logout</a>
+         {{#if logged}}
+       
+   <a href="/auth/logout">Logout</a>
+   {{else}}
+     <a href="/auth/signup">Register</a>
+        <a href="/auth/login">Login</a>
+   {{/if}}
     </nav>
   
 </header>
@@ -18,7 +24,7 @@
 
     {{#each user.favorites}}
 
-    <a href="../{{this}}" class="profilefavs2">{{this}}</a>
+    <a href="/users/{{this}}" class="profilefavs2">{{this}}</a>
     <form method="POST" action="/users/{{this}}/favorite">
     <button class="">Delete</button><br>
     </form>

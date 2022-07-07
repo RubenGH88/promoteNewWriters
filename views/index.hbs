@@ -5,8 +5,17 @@
     <nav class="navbar">
         <a href="#top">Home</a>
         <a href="#features">Features</a>
-        <a href="./auth/signup">Register</a>
-        <a href="./auth/login">Login</a>
+          <a href="/users">Users</a>
+           <a href="/works">Works</a>
+        <a href="/works/rating">Ratings</a>
+        {{#if logged}}
+          <a href="/users/profile">My profile</a>
+   <a href="/auth/logout">Logout</a>
+    {{else}}
+     <a href="/auth/signup">Register</a>
+        <a href="/auth/login">Login</a>
+   {{/if}}
+    
     </nav>
 </header>
 <!-- Header End-->
