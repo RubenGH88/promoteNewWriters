@@ -132,6 +132,7 @@ header .navbar a:hover{
   font-size: 1.7rem;
   color: #666;
   padding: 1rem 0;
+  padding-right: 5px;
 }
 
 .features .box-container{
@@ -465,6 +466,7 @@ form button:hover{
   .profilebg{
     background: url("/images/Library_bg.jpg");
     background-repeat: repeat;
+    min-height: 100%;
     height: fit-content;
     min-height:97.7%;
     max-width:22.6%;
@@ -473,6 +475,7 @@ form button:hover{
   .myprofile{
     margin-top: 5%;
     margin-left: 330px;
+    min-height: 1000px;
     width: 1200px;
     height: 100%;
     padding: 10px 50px 0px 50px;
@@ -511,6 +514,7 @@ form button:hover{
     margin-top: 10px;
   }
   .episode__content {
+    margin-left: 350px;
     border-top: 2px solid #fff;
     display: grid;
     grid-template-columns: 1fr 4fr;
