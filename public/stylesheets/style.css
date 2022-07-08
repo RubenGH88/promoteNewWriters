@@ -216,7 +216,7 @@ header .navbar a:hover{
 
 .footer{
  padding-top: 3rem;
- background-color: red;
+ background-color: rgb(167, 121, 121);
  background-size: cover;
  background-position: center;
 }
@@ -466,10 +466,12 @@ form button:hover{
     background: url("/images/Library_bg.jpg");
     background-repeat: repeat;
     height: fit-content;
+    min-height:97.7%;
+    max-width:22.6%;
   }
 
   .myprofile{
-    margin-top: 70px;
+    margin-top: 5%;
     margin-left: 330px;
     width: 1200px;
     height: 100%;
@@ -638,6 +640,7 @@ form button:hover{
   /* Ratings */
   .ratings{
     margin-top: 80px;
+    
   }
 
   /* Cards */
@@ -646,8 +649,8 @@ form button:hover{
     display: inline-block;
     overflow: hidden;
     margin: 10px;
-    min-width: 250px;
-    max-width: 310px;
+    
+    max-width: 15%;
     width: 100%;
     background-color: #ffffff;
     color: #2B2B2B;

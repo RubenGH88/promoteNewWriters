@@ -47,9 +47,14 @@ router.get("/create",isLoggedIn, (req, res, next) => {
 router.post("/create",isLoggedIn, (req, res, next) => {
  
   if (!req.files) {
-    res.send("File was not found");
-    return;
-  }
+    return res.status(400).render("works/create", {
+      errorMessage: "Please enter your file."}
+      )}
+
+
+
+ 
+
   const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   
   req.body.file="/files/"+randomName+".pdf"
