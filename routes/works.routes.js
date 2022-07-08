@@ -89,7 +89,7 @@ router.post("/create",isLoggedIn, (req, res, next) => {
         User.findByIdAndUpdate(req.user._id,{$push : {works : work._id}})
         .then((user)=>{
 
-            res.redirect("/users/"+user.username+"/profile")
+            res.redirect("/users/profile")
         })
         
         
@@ -147,7 +147,7 @@ router.post("/edit/:id",isLoggedIn, (req, res, next) => {
   if (!req.files) {
     Work.findByIdAndUpdate(req.params.id,req.body)
     .then((work) => {
-    res.redirect("/users/"+req.session.user.username+"/profile")
+    res.redirect("/users/profile")
   });
   }
 else{
@@ -169,7 +169,7 @@ else{
       });
 
       
-        res.redirect("/users/"+req.session.user.username+"/profile")
+        res.redirect("/users/profile")
     })
     .catch((err) => {
       next(err);
@@ -207,7 +207,7 @@ router.post('/delete/:id', (req, res, next) => {
                       Work.findById(req.params.id)  
                       .then(() => {
         
-                    res.redirect("/users/"+req.session.user.username+"/profile")
+                    res.redirect("/users/profile")
                   })
           })
       })
