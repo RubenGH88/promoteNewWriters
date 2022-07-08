@@ -78,7 +78,7 @@ if(req.session.user){logged=true}
                 }).then(()=>{})
                 
             }
-            res.redirect("/users/"+req.session.user.username+"/profile")
+            res.redirect("/users/profile")
         })
         
             
@@ -91,7 +91,7 @@ if(req.session.user){logged=true}
         User.findByIdAndUpdate(req.session.user._id, {$pull : {favorites : req.params.user}})
             
                 .then(() => {  
-        res.redirect("/users/"+req.session.user.username+"/profile")    
+        res.redirect("/users/profile")    
         })
             
             .catch((err) => console.log(err));
