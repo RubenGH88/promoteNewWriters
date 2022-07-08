@@ -17,18 +17,22 @@
 
 <div class="profilebg">
   <div class="myprofile">
-    <h1 class="h1profile">este es el perfil de {{user.username}}</h1>
-    <h2 class="h2profile">Mi valoración media: {{user.rating}}</h2>
+    <h1 class="h1profile">Welcome {{user.username}}</h1>
+    <h2 class="h2profile">Your average rating is: {{user.rating}}</h2>
 
-    <h2 class="profilefavs">List of favorites</h2>
+    <h2 class="profilefavs">List of favorites users:</h2>
 
     {{#each user.favorites}}
 
     <a href="/users/{{this}}" class="profilefavs2">{{this}}</a>
-    <form method="POST" action="/users/{{this}}/favorite">
+    <form method="POST" action="/users/{{this}}/delete">
     <button class="">Delete</button><br>
     </form>
+    <br>
     {{/each}}
+    <br>
+    <br>
+    <br>
 <hr class="hrprofile">
 <!-- -->
   <div class="container">
