@@ -46,17 +46,31 @@ router.get("/create",isLoggedIn, (req, res, next) => {
 
 router.post("/create",isLoggedIn, (req, res, next) => {
  
-  if (!req.files) {
-    return res.status(400).render("works/create", {
-      errorMessage: "Please enter your file."}
-      )}
-
-
-
- 
-
-  const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   
+  if (!req.body.name) {
+    return res.status(400).render("works/create", {
+      errorMessage: "Please enter the work's name"}
+      )}     
+      
+      if (!req.body.language) {
+        return res.status(400).render("works/create", {
+          errorMessage: "Please enter the work's language"}
+          )}
+          
+          if (!req.body.description) {
+            return res.status(400).render("works/create", {
+              errorMessage: "Please enter a description."}
+              )}
+              
+              if (!req.files) {
+                return res.status(400).render("works/create", {
+                  errorMessage: "Please enter your file."}
+                  )}
+              
+              
+              
+              const randomName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+              
   req.body.file="/files/"+randomName+".pdf"
 
   Work.create(req.body)
@@ -89,6 +103,30 @@ router.post("/create",isLoggedIn, (req, res, next) => {
 
 
 router.get('/edit/:id',isLoggedIn, (req, res, next) => {
+
+  if (!req.body.name) {
+    return res.status(400).render("works/create", {
+      errorMessage: "Please enter the work's name"}
+      )}     
+      
+      if (!req.body.language) {
+        return res.status(400).render("works/create", {
+          errorMessage: "Please enter the work's language"}
+          )}
+          
+          if (!req.body.description) {
+            return res.status(400).render("works/create", {
+              errorMessage: "Please enter a description."}
+              )}
+              
+              if (!req.files) {
+                return res.status(400).render("works/create", {
+                  errorMessage: "Please enter your file."}
+                  )}
+
+
+
+
     let logged=false
 
 if(req.session.user){logged=true}
