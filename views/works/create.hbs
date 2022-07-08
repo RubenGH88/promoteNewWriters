@@ -10,9 +10,10 @@
       <option value="Theater">Theater</option>
       <option value="Narrative">Narrative</option>
       </select>
+     
        <p>Genre</p>      
       <select name="genre" id="type">
-     <p><option value="Drama">Drama</option></p> 
+     <option value="Drama">Drama</option>
       <option value="Romance">Romance</option>
       <option value="Erotic">Erotic</option>
       <option value="Thriller">Thriller</option>
@@ -21,11 +22,14 @@
       </select>
       <p><input name="language" placeholder="The language of the work"></p>
       <p><input name="description" placeholder="The description of the work"></p>
+      
       <p><input type="file" id="file" name="file"  /></p>
+        {{#if errorMessage}}
+    {{errorMessage}}
+   {{/if}}
       <button type="submit" class="formbutton">Add new work</button>
+        
       </form>
 
-   {{#if errorMessage}}
-     <h4>hol</h4>
-   {{/if}}
+
 </div>
